@@ -9,7 +9,8 @@
         "@wdio/spec-reporter": "^7.17.3",
         "chromedriver": "^99.0.0",
         "wdio-chromedriver-service": "^7.2.8",
-        "wdio-wait-for": "^2.2.4"
+        "wdio-wait-for": "^2.2.4",
+        "dotenv": "16.0.0"
     },
     "scripts": {
         "wdio": "wdio run wdio.conf.js"
