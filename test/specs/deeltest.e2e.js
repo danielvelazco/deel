@@ -41,15 +41,19 @@ describe("Create a contract", () => {
 
         // Benefits and Extras form
         await BenefitsAndExtrasPage.fillBenefitsAndExtrasForm({
-            specialClause: "especial"
+            specialClause: "Special"
         });
 
         // Compliance form - default values
         await CompliancePage.createAContract();
 
-        // The review & sign button must be displayed/enabled when the contract is successfully created
+        // Assertions
         await expect(ReviewSignPage.buttonReviewSign).toBeDisplayed();
         await expect(ReviewSignPage.buttonReviewSign).toBeClickable();
+        await expect(ReviewSignPage.lblContractType).toHaveText("Fixed rate");
+        await expect(ReviewSignPage.lblRate).toHaveTextContaining("£1,000");
+        await expect(ReviewSignPage.lblFrecuency).toHaveText("Weekly");
+        await expect(ReviewSignPage.lblSpecialClause).toHaveText("Special");
         
     });
 });
