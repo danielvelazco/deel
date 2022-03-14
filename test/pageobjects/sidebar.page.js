@@ -1,7 +1,3 @@
-
-
-//const Page = require('./page');
-
 /**
  * sub page containing specific selectors and methods for a specific page
  */
@@ -18,8 +14,12 @@ class Sidebar {
      * e.g. to login using username and password
      */
     async selectSidebarOption (option) {
-        await this.logo.waitForDisplayed({timeout: 50000});
-        return (await $(`p=${option}`)).click(); 
+        try {
+            await this.logo.waitForDisplayed({timeout: 50000});
+            return (await $(`p=${option}`)).click();     
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     /**

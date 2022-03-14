@@ -1,7 +1,3 @@
-
-
-//const Page = require('./page');
-
 /**
  * sub page containing specific selectors and methods for a specific page
  */
@@ -22,8 +18,12 @@
      * e.g. to login using username and password
      */
     async selectContractType (type) {
-        await this.title.waitForDisplayed({timeout: 50000});
-        return await this[type].click();
+        try {
+            await this.title.waitForDisplayed({timeout: 50000});
+            return await this[type].click();    
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     /**

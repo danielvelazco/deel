@@ -1,3 +1,7 @@
+const User = {   
+        NAME: "Daniel"
+}
+
 const SidebarOptions = {   
         CREATE_CONTRACT: "Create A Contract"
 }
@@ -22,5 +26,15 @@ const ScopesIndex = {
         ACCOUNT_EXECUTIVE: 0
 }
 
+const Currency = {
+        GB: "GBP - British Pound"
+}
 
-module.exports = { SidebarOptions, ContractsType, ResidenceCountry, ResidenceState, Seniority, ScopesIndex };
+const PaymentFrecuency = {
+        Week: "Weekly"
+}
+
+
+
+
+module.exports = { User, SidebarOptions, ContractsType, ResidenceCountry, ResidenceState, Seniority, ScopesIndex, Currency, PaymentFrecuency };

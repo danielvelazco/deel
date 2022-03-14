@@ -1,7 +1,3 @@
-
-
-//const Page = require('./page');
-
 /**
  * sub page containing specific selectors and methods for a specific page
  */
@@ -63,28 +59,69 @@
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
      */
-    async fillGeneralInfo (data) {
-        await this.entity.waitForDisplayed({timeout: 50000})
-        await this.inputName.setValue(data.name);
-        await this.inputContractorTaxResidenceCountry.waitForEnabled({timeout: 50000})
-        await this.inputContractorTaxResidenceCountry.setValue(data.contractorTaxResidenceCountry);
-        await browser.keys("Enter");
-        await this.inputContractorTaxResidenceState.setValue(data.contractorTaxResidenceState);
-        await browser.keys("Enter");
-        await this.inputSeniorityLevel.setValue(data.seniorityLevel);
-        await browser.keys("Enter");
-        await this.selectScope(data.scope);
-        await this.dropdownCalendar.click();
-        await this.calendarDays.waitForDisplayed({timeout: 5000});
-        await this.contractorStartDay.click();
-        await this.buttonNext.waitForEnabled({timeout: 5000});
-        await this.buttonNext.click();
+    async fillGeneralInfoForm (data) {
+        try {
+            await this.entity.waitForDisplayed({timeout: 50000})
+            await this.inputName.setValue(data.name);
+            await this.setContractorTaxResidenceCountry(data.contractorTaxResidenceCountry);
+            await this.setContractorTaxResidenceState(data.contractorTaxResidenceState);
+            await this.setSeniorityLevel(data.seniorityLevel);
+            await this.selectScope(data.scope);
+            await this.setContractorStartDay();
+            await this.buttonNext.waitForEnabled({timeout: 5000});
+            return await this.buttonNext.click();    
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async setContractorTaxResidenceCountry (value) {
+        try {
+            await this.inputContractorTaxResidenceCountry.waitForEnabled({timeout: 50000})
+            await this.inputContractorTaxResidenceCountry.setValue(value);
+            return await browser.keys("Enter");    
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+
+    async setContractorTaxResidenceState (value) {
+        try {
+            await this.inputContractorTaxResidenceState.setValue(value);
+            return await browser.keys("Enter");    
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async setSeniorityLevel (value) {
+        try {
+            await this.inputSeniorityLevel.setValue(value);
+            return await browser.keys("Enter");    
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     async selectScope (scopeIndex) {
-        await this.dropdownScopes.click();
-        await this.scopeList[scopeIndex].waitForClickable();
-        return await this.scopeList[scopeIndex].click();
+        try {
+            await this.dropdownScopes.click();
+            await this.scopeList[scopeIndex].waitForClickable();
+            return await this.scopeList[scopeIndex].click();    
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async setContractorStartDay () {
+        try {
+            await this.dropdownCalendar.click();
+            await this.calendarDays.waitForDisplayed({timeout: 5000});
+            return await this.contractorStartDay.click();    
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 
